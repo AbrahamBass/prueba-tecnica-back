@@ -1,29 +1,29 @@
-# Prueba TÈcnica ñ API de Pacientes
+# Prueba T√©cnica ‚Äì API de Pacientes
 
-Este proyecto es una API b·sica para la gestiÛn de pacientes. Se desarrollÛ aplicando una estructura inspirada en arquitectura limpia, buscando mantener una buena organizaciÛn y separaciÛn de responsabilidades.
+Este proyecto es una API b√°sica para la gesti√≥n de pacientes. Se desarroll√≥ aplicando una estructura inspirada en arquitectura limpia, buscando mantener una buena organizaci√≥n y separaci√≥n de responsabilidades.
 
-DecidÌ estructurar el proyecto en varias capas:
+Decid√≠ estructurar el proyecto en varias capas:
 
 * Domain
 * Application
 * Infrastructure
 * Presentation (API)(PruebaTecnica)
 
-La idea principal fue desacoplar la lÛgica y que cada capa tenga una responsabilidad clara.
+La idea principal fue desacoplar la l√≥gica y que cada capa tenga una responsabilidad clara.
 
 ---
 
-## Decisiones de diseÒo
+## Decisiones de dise√±o
 
-Para este caso optÈ por usar servicios en la capa de Application en lugar de implementar casos de uso (CQRS). Esto porque el problema es relativamente simple, aunque sÈ que en escenarios m·s grandes lo ideal serÌa usar commands y queries.
+Para este caso opt√© por usar servicios en la capa de Application en lugar de implementar casos de uso (CQRS). Esto porque el problema es relativamente simple, aunque s√© que en escenarios m√°s grandes lo ideal ser√≠a usar commands y queries.
 
 ---
 
-## OrganizaciÛn del proyecto
+## Organizaci√≥n del proyecto
 
 ### Domain
 
-AquÌ se definieron:
+Aqu√≠ se definieron:
 
 * Entidades
 * Excepciones personalizadas
@@ -35,7 +35,7 @@ Esta capa no depende de ninguna otra.
 
 ### Application
 
-Contiene la lÛgica de negocio:
+Contiene la l√≥gica de negocio:
 
 * Servicios e interfaces
 * Validaciones con FluentValidation
@@ -44,20 +44,20 @@ Las validaciones se usan para evitar errores como:
 
 * Formatos incorrectos en documentos
 * Inconsistencias entre edad y tipo de documento
-* Campos obligatorios vacÌos
+* Campos obligatorios vac√≠os
 
 ---
 
 ### Infrastructure
 
-AquÌ est· toda la implementaciÛn tÈcnica:
+Aqu√≠ est√° toda la implementaci√≥n t√©cnica:
 
 * Repositorios
 * DbContext
-* ConfiguraciÛn de entidades en OnModelCreating
+* Configuraci√≥n de entidades en OnModelCreating
 
-TambiÈn se implementÛ un procedimiento almacenado para el reporte de pacientes.
-Este procedimiento se agregÛ mediante una migraciÛn vacÌa para mantenerlo versionado dentro del proyecto.
+Tambi√©n se implement√≥ un procedimiento almacenado para el reporte de pacientes.
+Este procedimiento se agreg√≥ mediante una migraci√≥n vac√≠a para mantenerlo versionado dentro del proyecto.
 
 ---
 
@@ -67,33 +67,33 @@ Contiene los controllers:
 
 * Manejo de endpoints HTTP
 * Respuestas del sistema
-* ComunicaciÛn con los servicios
+* Comunicaci√≥n con los servicios
 
 ---
 
 ## Manejo de errores
 
-Se implementÛ un middleware global para el manejo de excepciones.
+Se implement√≥ un middleware global para el manejo de excepciones.
 
 Este middleware:
 
 * Captura errores
-* Maneja las excepciones de validaciÛn
+* Maneja las excepciones de validaci√≥n
 * Retorna respuestas HTTP adecuadas
 
-De esta forma se evita usar try-catch en los controllers y se mantiene el cÛdigo m·s limpio.
+De esta forma se evita usar try-catch en los controllers y se mantiene el c√≥digo m√°s limpio.
 
 ---
 
 ## Tests
 
-Se creÛ un proyecto de pruebas donde se validan los principales comportamientos de los controllers.
+Se cre√≥ un proyecto de pruebas donde se validan los principales comportamientos de los controllers.
 
 Los tests se enfocan en asegurar que las respuestas sean las esperadas en distintos escenarios.
 
 ---
 
-## CÛmo ejecutar el proyecto
+## C√≥mo ejecutar el proyecto
 
 1. Clonar el repositorio
 
@@ -101,7 +101,7 @@ git clone https://github.com/AbrahamBass/prueba-tecnica-back.git
 
 2. Entrar a la carpeta del proyecto
 
-cd PruebaTecnica
+cd prueba-tecnica-back
 
 3. Restaurar dependencias
 
@@ -119,27 +119,27 @@ dotnet run
 
 ## Notas
 
-* Se utilizÛ .NET 10
-* La configuraciÛn de la base de datos se encuentra en appsettings.Development.json
+* Se utiliz√≥ .NET 10
+* La configuraci√≥n de la base de datos se encuentra en appsettings.Development.json
 
 ---
 
-## EjecuciÛn con Docker
+## Ejecuci√≥n con Docker
 
-Si no deseas clonar este repositorio, tambiÈn puedes usar directamente la imagen publicada en Docker Hub:
+Si no deseas clonar este repositorio, tambi√©n puedes usar directamente la imagen publicada en Docker Hub:
 
 docker.io/abrahambass/asp-prueba-tecnica
 
-Adicionalmente, se dejÛ un repositorio separado con un docker-compose ya configurado que levanta todo el entorno (API + base de datos) listo para usar:
+Adicionalmente, se dej√≥ un repositorio separado con un docker-compose ya configurado que levanta todo el entorno (API + base de datos) listo para usar:
 
 https://github.com/AbrahamBass/prueba-tecnica-compose.git
 
-En ese repositorio encontrar·s:
+En ese repositorio encontrar√°s:
 
 El archivo docker-compose.yml
-La configuraciÛn necesaria para la base de datos
+La configuraci√≥n necesaria para la base de datos
 Los pasos para levantar el entorno completo
-CÛmo usarlo
+C√≥mo usarlo
 Clonar el repositorio del compose:
 
 git clone https://github.com/AbrahamBass/prueba-tecnica-compose.git
@@ -152,7 +152,7 @@ Ejecutar:
 
 docker-compose up
 
-Con esto se levantar· autom·ticamente:
+Con esto se levantar√° autom√°ticamente:
 
 La API
 La base de datos
@@ -160,7 +160,7 @@ Todo listo para probar el sistema sin configuraciones adicionales
 
 ## Ejecutar solo la API
 
-TambiÈn puedes probar unicamente la API usando la imagen en Docker Hub:
+Tambi√©n puedes probar unicamente la API usando la imagen en Docker Hub:
 
 docker.io/abrahambass/asp-prueba-tecnica
 
@@ -177,6 +177,6 @@ http://localhost:8080
 
 ## Consideraciones finales
 
-Se buscÛ mantener el cÛdigo lo m·s claro y organizado posible, aplicando buenas pr·cticas sin sobrecomplicar la soluciÛn.
+Se busc√≥ mantener el c√≥digo lo m√°s claro y organizado posible, aplicando buenas pr√°cticas sin sobrecomplicar la soluci√≥n.
 
-La idea fue dejar una base limpia que pueda escalar f·cilmente en caso de necesitar m·s funcionalidades.
+La idea fue dejar una base limpia que pueda escalar f√°cilmente en caso de necesitar m√°s funcionalidades.
