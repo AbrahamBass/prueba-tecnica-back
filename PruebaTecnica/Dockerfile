@@ -2,10 +2,17 @@
 
 # Esta fase se usa cuando se ejecuta desde VS en modo rápido (valor predeterminado para la configuración de depuración)
 FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS base
-USER $APP_UID
+
+RUN apk add --no-cache icu-libs tzdata
+
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+
+
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
+
+USER $APP_UID
 
 
 # Esta fase se usa para compilar el proyecto de servicio

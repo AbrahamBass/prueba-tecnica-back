@@ -18,7 +18,14 @@ namespace Infrastructure
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MyDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            options.UseSqlServer(connectionString,
+                sqlServerOptionsAction: sqlOptions =>
+                {
+                    sqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 10,
+                        maxRetryDelay: TimeSpan.FromSeconds(5),
+                        errorNumbersToAdd: null);
+                }));
 
             services.AddScoped<IPatientRepository, PatientRepository>();
 

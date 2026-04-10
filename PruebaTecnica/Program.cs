@@ -1,6 +1,8 @@
 
 using Application;
 using Infrastructure;
+using Infrastructure.Persistence.Db;
+using Microsoft.EntityFrameworkCore;
 using PruebaTecnica.Middlewares;
 
 namespace PruebaTecnica
@@ -42,6 +44,23 @@ namespace PruebaTecnica
                 .AddInfrastructure(configuration);
 
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                try
+                {
+                    var context = services.GetRequiredService<MyDbContext>();
+
+                    context.Database.Migrate();
+                    logger.LogInformation("Migraciones aplicadas.");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Ocurrió un error crítico al intentar migrar la base de datos.");
+                }
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

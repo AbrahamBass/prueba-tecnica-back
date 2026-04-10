@@ -107,11 +107,7 @@ cd prueba-tecnica-back
 
 dotnet restore
 
-4. Aplicar migraciones
-
-dotnet ef database update
-
-5. Ejecutar el proyecto
+4. Ejecutar el proyecto
 
 dotnet run
 
